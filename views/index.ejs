@@ -1,82 +1,124 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Après School - TFS Haslach</title>
+    <title>Abschlussball 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Après School</h1>
-      <p>Endlich am Zielhang!</p>
-      <div class="countdown" id="countdown">Countdown:</div>
-      <h4>SAVE THE DATE: 22.11.2025</h4>
-    </header>
-
-    <nav>
-      <a href="#about">Über den Ball</a>
-      <a href="#program">Programm</a>
-      <a href="#location">Location</a>
-      <a href="#tickets">Tickets</a>
-      <a href="/sponsors">Sponsoren</a>
-      <a href="#gallery">Galerie</a>
-      <a href="#contact">Kontakt</a>
-    </nav>
-
-    <section id="about">
-      <h2>Über den Ball</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam iusto,
-        quod animi culpa impedit accusantium sint sit, modi non cupiditate, fuga
-        nulla doloribus! Debitis, asperiores eos est quam minima nostrum?
-      </p>
-    </section>
-
-    <section id="program">
-      <h2>Programm</h2>
+    <nav class="nav">
       <ul>
-        <p>// Dev notes: Hier soll ein Ablauf des Balles hin</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda repellat voluptas atque quasi quod libero ratione nisi amet! Reprehenderit a delectus perspiciatis minima deserunt saepe eveniet iusto, illo at corrupti?</p>
+        <li><a href="/">Home</a></li>
+        <li><a href="/sponsoren">Sponsoren</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a href="#location">Standort</a></li>
+        <li><a href="#contact">Kontakt</a></li>
       </ul>
-    </section>
+    </nav>
+    <section class="hero">
+      <h1 class="fade-in">Aprés School 2025</h1>
+      <p class="fade-in delay-1">Endlich am Zielhang! • 22. November 2025</p>
 
-    <section id="location">
-      <h2>Location</h2>
-      <p>
-        Der Abschlussball findet in am Meierhof statt. Parkplätze sind
-        vorhanden.
-      </p>
-      <div style="max-width:100%;overflow:hidden;color:red;width:1000px;height:500px;">
-        <div id="gmap-canvas" style="height:100%; width:100%;max-width:100%;">
-          <iframe style="height:100%;width:100%;border:0;" frameborder="0" 
-          src="https://www.google.com/maps/embed/v1/place?q=Meierhof&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">
-          </iframe>
+      <div class="countdown fade-in delay-2">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">00</div>
+          <div class="countdown-label">Tage</div>
         </div>
-          <a class="googlecoder" href="https://www.bootstrapskins.com/themes" id="make-map-infor-mation">premium bootstrap themes</a><style>#gmap-canvas img{max-height:none;max-width:none!important;background:none!important;}</style></div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">00</div>
+          <div class="countdown-label">Stunden</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">00</div>
+          <div class="countdown-label">Minuten</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">00</div>
+          <div class="countdown-label">Sekunden</div>
+        </div>
+      </div>
     </section>
 
-    <section id="tickets">
-      <h2>Tickets</h2>
+    <section class="section" id="details">
+      <h2 class="section-title">Event Details</h2>
+      <div class="details">
+        <div>
+          <ul class="details-list">
+            <li>
+              <i class="fas fa-calendar-alt"></i>
+              <strong>Wann findet er statt:</strong> 22. November 2025
+            </li>
+            <li>
+              <i class="fas fa-clock"></i>
+              <strong>Um welche Uhrzeit:</strong> 19:00 Uhr
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <strong>Wo findet er statt:</strong>
+              <a href="https://www.meierhof-events.at/"
+                >Meierhof Aigen-Schlägl</a
+              >
+            </li>
+            <li>
+              <i class="fas fa-tshirt"></i> <strong>Dress Code:</strong> Formell
+            </li>
+            <li>
+              <i class="fas fa-ticket-alt"></i> <strong>Tickets:</strong>
+              <a href="">Link</a>
+            </li>
+          </ul>
+        </div>
+        <div class="gallery">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Ballroom"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Dancing"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Decoration"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="location">
+      <h2 class="section-title">Standort</h2>
+      <div class="map">
+        <iframe
+          style="height: 100%; width: 100%; border: 0"
+          frameborder="0"
+          src="https://www.google.com/maps/embed/v1/place?q=Meierhof&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+        >
+        </iframe>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2 class="section-title">Kontakt</h2>
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur ducimus alias culpa ex nisi, vitae modi sequi fugit nemo, eveniet laboriosam ea? Beatae ipsum quae error deleniti quis atque nesciunt?
-      </p>
-    </section>
-
-    <section id="gallery">
-      <h2>Galerie</h2>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem corporis vero perspiciatis vitae repudiandae dolore, asperiores voluptatibus reiciendis fugiat debitis sequi itaque nihil cum similique fugit repellendus voluptas, voluptate magnam!</p>
-    </section>
-
-    <section id="contact">
-      <h2>Kontakt</h2>
-      <p>
-        Fragen? Wünsche? Lob? Meldet euch beim Team unter
-        <a href="mailto:theresa.hraba@tfs-haslach.at"
+        Fragen? Ideen? Sponsoring? Meldet euch gerne beim Team unter
+        <a href="mailto::theresa.hraba@tfs-haslach.at"
           >theresa.hraba@tfs-haslach.at</a
         >
         oder auf Instagram
@@ -87,30 +129,62 @@
     </section>
 
     <footer>
-      <p>&copy; 2025 Abschlussball @ TFS-Haslach</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/abschlussball_tfs_haslach/"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+      </div>
+      <p>&copy; 2025 Abschlussball | TFS Haslach</p>
     </footer>
 
     <script>
-      const countdown = document.querySelector('#countdown');
+      const countdownDate = new Date('Nov 22, 2025 19:00:00').getTime();
 
-      const target = 1763838000 * 1000;
-
-      setInterval(() => {
+      const updateCountdown = () => {
         const now = new Date().getTime();
-        const timeFrame = target - now;
+        const distance = countdownDate - now;
 
-        if (timeFrame <= 0) {
-          countdown.innerHTML = 'Der Moment ist da!';
-          return;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days
+          .toString()
+          .padStart(2, '0');
+        document.getElementById('hours').innerText = hours
+          .toString()
+          .padStart(2, '0');
+        document.getElementById('minutes').innerText = minutes
+          .toString()
+          .padStart(2, '0');
+        document.getElementById('seconds').innerText = seconds
+          .toString()
+          .padStart(2, '0');
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('days').innerText = '00';
+          document.getElementById('hours').innerText = '00';
+          document.getElementById('minutes').innerText = '00';
+          document.getElementById('seconds').innerText = '00';
         }
+      };
 
-        const days = Math.floor(timeFrame / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeFrame / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((timeFrame / (1000 * 60)) % 60);
-        const seconds = Math.floor((timeFrame / 1000) % 60);
+      updateCountdown();
+      const countdownInterval = setInterval(updateCountdown, 1000);
 
-        countdown.innerHTML = `Countdown: ${days} Tage ${hours} Std ${minutes} Min ${seconds} Sek`;
-      }, 1000);
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+          });
+        });
+      });
     </script>
   </body>
 </html>

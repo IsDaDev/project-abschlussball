@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/sponsors', (req, res) => {
+app.get('/sponsoren', (req, res) => {
   fs.readFile('sponsors.csv', 'utf8', (err, data) => {
     const lines = data
       .trim()

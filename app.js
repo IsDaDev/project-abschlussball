@@ -34,3 +34,11 @@ app.get('/sponsoren', (req, res) => {
     res.render('sponsors', { data: dataArr });
   });
 });
+
+app.get('/impressum', (req, res) => {
+  res.render('impressum');
+});
+
+app.get('/privacy', (req, res) => {
+  res.render('privacy');
+});

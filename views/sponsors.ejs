@@ -51,7 +51,12 @@
             <% } %>
             <td>
               <a href="<%=element[1]%>">
-              <img src="/imgs/logo.jpg" alt="logo" height="250px">
+                <% if (!element[2]) { %>
+                  <img src="imgs/logo.jpg" alt="logo" height="250px">
+                <% } else { %>
+                  <img src="imgs/logos/<%=element[2]%>" alt="logo" height="250px">
+                <% }%>
+              
               <p><%= element[0] %></p>
               </a>
             </td>

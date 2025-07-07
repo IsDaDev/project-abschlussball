@@ -17,15 +17,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav class="nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/sponsoren">Sponsoren</a></li>
-        <li><a href="#details">Details</a></li>
-        <li><a href="#location">Standort</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-      </ul>
+    <nav class="nav sticky-nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="/">🎓 Abschlussball</a>
+        </div>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon"
+          ><i class="fas fa-bars"></i
+        ></label>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/sponsoren">Sponsoren</a></li>
+          <li><a href="#details">Details</a></li>
+          <li><a href="#location">Standort</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </div>
     </nav>
+
     <section class="hero">
       <h1 class="fade-in">Aprés School 2025</h1>
       <p class="fade-in delay-1">Endlich am Zielhang! • 22. November 2025</p>
@@ -52,51 +62,48 @@
 
     <section class="section" id="details">
       <h2 class="section-title">Event Details</h2>
-      <div class="details">
-        <div>
+      <div class="details enhanced-details">
+        <div class="details-box">
           <ul class="details-list">
             <li>
               <i class="fas fa-calendar-alt"></i>
-              <strong>Wann findet er statt:</strong> 22. November 2025
+              <strong>Wann: 22. November 2025</strong>
             </li>
             <li>
               <i class="fas fa-clock"></i>
-              <strong>Um welche Uhrzeit:</strong> 19:00 Uhr
+              <strong>Uhrzeit: 19:00 Uhr</strong>
             </li>
             <li>
               <i class="fas fa-map-marker-alt"></i>
-              <strong>Wo findet er statt:</strong>
-              <a href="https://www.meierhof-events.at/"
-                >Meierhof Aigen-Schlägl</a
+              <strong
+                >Ort:
+                <a href="https://www.meierhof-events.at/" target="_blank"
+                  >Meierhof Aigen-Schlägl</a
+                ></strong
               >
             </li>
             <li>
-              <i class="fas fa-tshirt"></i> <strong>Dress Code:</strong> Formell
+              <i class="fas fa-tshirt"></i>
+              <strong>Dress Code: Formell</strong>
             </li>
             <li>
-              <i class="fas fa-ticket-alt"></i> <strong>Tickets:</strong>
-              <a href="">Link</a>
+              <i class="fas fa-ticket-alt"></i>
+              <strong>Tickets: <a href="#">Link</a></strong>
             </li>
           </ul>
         </div>
-        <div class="gallery">
+        <div class="gallery enhanced-gallery">
           <div class="gallery-item">
-            <img
-              src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-              alt="Ballroom"
-            />
+            <img src="/imgs/Loc_1.JPG" alt="Decoration" />
           </div>
           <div class="gallery-item">
-            <img
-              src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-              alt="Dancing"
-            />
+            <img src="/imgs/Loc_2.JPG" alt="Decoration" />
           </div>
           <div class="gallery-item">
-            <img
-              src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-              alt="Decoration"
-            />
+            <img src="/imgs/Loc_3.JPG" alt="Decoration" />
+          </div>
+          <div class="gallery-item">
+            <img src="/imgs/Loc_4.JPG" alt="Decoration" />
           </div>
         </div>
       </div>

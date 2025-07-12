@@ -69,11 +69,15 @@
               ></textarea>
             </td>
           </tr>
+          <% if (status != undefined) { %>
           <tr>
             <td class="center" colspan="2">
-              <p id="status" style="text-align: center; color: green"></p>
+              <p id="status" style="text-align: center; color: <%= color %>">
+                <%= status%>
+              </p>
             </td>
           </tr>
+          <% } %>
           <tr>
             <td colspan="2" class="center">
               <button type="submit">Abschicken</button>

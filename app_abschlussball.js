@@ -19,7 +19,7 @@ app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded());
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('up and running');
 });
 
@@ -145,7 +145,12 @@ app.post('/buy-ticket', (req, res) => {
 });
 
 app.get('/kontakt', (req, res) => {
-  res.render('kontakt');
+  let status = undefined;
+  console.log(req.query.status);
+  if (req.query.status) {
+    status = req.query.status;
+  }
+  res.render('kontakt', { status: status, color: req.query.color });
 });
 
 app.post('/send-contact-form', (req, res) => {
@@ -175,9 +180,9 @@ app.post('/send-contact-form', (req, res) => {
 
   try {
     transporter.sendMail(mailOptions);
-    res.json({ message: 'success' });
+    res.redirect('/kontakt?status=Nachricht+gesendet&color=green');
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: 'nope' });
+    res.redirect('/kontakt?status=Fehler+beim+senden+der+Nachricht&color=red');
   }
 });

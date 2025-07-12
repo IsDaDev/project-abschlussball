@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestellung</title>
+    <link rel="stylesheet" href="ticket.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="nav sticky-nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="/">🎓 Abschlussball</a>
+        </div>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon"
+          ><i class="fas fa-bars"></i
+        ></label>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/sponsoren">Sponsoren</a></li>
+          <li><a href="/#details">Details</a></li>
+          <li><a href="/ticketverkauf">Tickets</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container container-2">
+        <h1>Danke</h1>
+        <p class="information">Um die Buchung abzuschließen, überweisen Sie bitte den Gesamtbetrag für die Tickets an die untenstehende IBAN.
+            Sobald Ihre Zahlung bei uns eingegangen ist, versenden wir die Ballkarten innerhalb von 2-3 Werktagen an die von Ihnen angegebene E-Mail-Adresse.
+            <br>
+            Bitte beachten Sie: Direkt nach dem Absenden des Formulars erhalten Sie eine Bestätigung - die Tickets selbst werden jedoch erst nach Zahlungseingang verschickt.
+        </p>
+            
+        <table>
+            <tr>
+                <td>IBAN</td>
+                <td><strong>AT66 2033 4010 0024 5371</strong></td>
+            </tr>
+            <tr>
+                <td>Zahlungszweck</td>
+                <td><strong><%= ref %></strong></td>
+            </tr>
+            <tr>
+                <td>Bank</td>
+                <td><strong>Sparkasse Mühlviertel West</strong></td>
+            </tr>
+            <tr>
+                <td>Kontoinhaber</td>
+                <td><strong>Ballkomitee TFS-Ball</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="right">
+                    <a href="/"><button>Fertig!</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

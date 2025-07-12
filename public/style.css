@@ -348,6 +348,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .countdown {
+    display: block;
+  }
   .enhanced-details {
     flex-direction: column;
   }
@@ -514,4 +517,30 @@ footer {
   .menu-icon {
     display: block;
   }
+}
+
+.school-detail {
+  display: block;
+  padding: 0 10rem;
+}
+
+.school-detail h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.school-detail p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+hr {
+  color: #ffd700;
+}
+
+textarea {
+  resize: none;
 }

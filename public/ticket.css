@@ -1,0 +1,98 @@
+body {
+    background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(58, 12, 163, 0.7));
+    height: 100vh;
+}
+
+.container-1 {
+    width: fit-content;
+}
+
+.container-2 {
+    width: 50%;
+    padding: 1rem 2rem 0 2rem;
+}
+
+.container {
+  background-color: #1a1a2e;
+  
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+table, tr, td {
+    padding: 1rem;
+}
+
+table {
+    margin: 0 auto;
+}
+
+td {
+    width: 270px;
+}
+
+.contact-table td {
+    width: 250px;
+    text-align: center;
+}
+
+.td-label {
+    text-align: left !important;
+}
+
+button {
+    margin: 1rem;
+    padding: .5rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.information {
+    text-align: justify;
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    padding: .5rem 1rem;
+}
+
+
+.right {
+    text-align: right;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--gold);
+  display: block;
+  margin: auto;
+  transition: 1s;
+}
+
+button:hover::after {
+  width: 100%;
+}

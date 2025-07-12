@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kontaktformular</title>
     <link rel="stylesheet" href="ticket.css" />
     <link rel="stylesheet" href="style.css" />
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("vIBCTpJtgRvahHzDM");
-            })();
-    </script>
-    
-</head>
-<body>
+  </head>
+  <body>
     <nav class="nav sticky-nav">
       <div class="nav-container">
         <div class="nav-logo">
@@ -34,71 +26,61 @@
         </ul>
       </div>
     </nav>
-    
+
     <div class="container container-1">
-        <h1>Kontakt</h1>
-        <form method="post" id="form">
-            <table class="contact-table">
-                <tr>
-                <td class="td-label"><label for="vorname">Vorname</label></td>
-                <td><input required type="text" name="vorname" id="vorname"></td>
-                </tr>
-                <tr>
-                <td class="td-label"><label for="nachname">Nachname</label></td>
-                <td><input required type="text" name="nachname" id="nachname"></td>
-                </tr>
-                <tr>
-                <td class="td-label"><label for="email">Email</label></td>
-                <td><input required type="email" name="email" id="email"></td>
-                </tr>
-                <tr>
-                <td class="td-label"><label for="anliegen">Anliegen</label></td>
-                <td>
-                    <select name="anliegen" id="anliegen">
-                    <optgroup label="Anliegen">
-                        <option value="Probleme">Probleme</option>
-                        <option value="Sponsoring" selected>Sponsoring</option>
-                        <option value="Ideen">Ideen</option>
-                        <option value="Allgemein">Allgemein</option>
-                    </optgroup>
-                    </select>
-                </td>
-                </tr>
-                <tr>
-                <td colspan="2">
-                    <textarea name="message" id="message" cols="57" rows="8" required></textarea>
-                </td>
-                </tr>
-                <tr>
-                    <td class="center" colspan="2"><p id="status" style="text-align:center; color: green;"></p></td>
-                </tr>
-                <tr>
-                <td colspan="2" class="center"><button type="submit">Abschicken</button></td>
-                </tr>
-            </table>
-        </form>
+      <h1>Kontakt</h1>
+      <form method="post" action="/send-contact-form" id="form">
+        <table class="contact-table">
+          <tr>
+            <td class="td-label"><label for="vorname">Vorname</label></td>
+            <td><input required type="text" name="vorname" id="vorname" /></td>
+          </tr>
+          <tr>
+            <td class="td-label"><label for="nachname">Nachname</label></td>
+            <td>
+              <input required type="text" name="nachname" id="nachname" />
+            </td>
+          </tr>
+          <tr>
+            <td class="td-label"><label for="email">Email</label></td>
+            <td><input required type="email" name="email" id="email" /></td>
+          </tr>
+          <tr>
+            <td class="td-label"><label for="anliegen">Anliegen</label></td>
+            <td>
+              <select name="anliegen" id="anliegen">
+                <optgroup label="Anliegen">
+                  <option value="Probleme">Probleme</option>
+                  <option value="Sponsoring" selected>Sponsoring</option>
+                  <option value="Ideen">Ideen</option>
+                  <option value="Allgemein">Allgemein</option>
+                </optgroup>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <textarea
+                name="message"
+                id="message"
+                cols="57"
+                rows="8"
+                required
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="center" colspan="2">
+              <p id="status" style="text-align: center; color: green"></p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="center">
+              <button type="submit">Abschicken</button>
+            </td>
+          </tr>
+        </table>
+      </form>
     </div>
-
-    <script>
-        const form = document.getElementById('form');
-        const status = document.getElementById('status');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            emailjs.sendForm('service_a6cxg77', 'template_xzxccob', this)
-            .then(function(response) {
-                console.log('Erfolg:', response.status, response.text);
-                status.innerText = "✅ E-Mail erfolgreich gesendet!";
-                status.style.color = 'green';
-                form.reset();
-            }, function(error) {
-                console.error('Fehler:', error);
-                status.innerText = "❌ Fehler beim Senden der E-Mail.";
-                status.style.color = 'red';
-            });
-        });
-    </script>
-
-</body>
+  </body>
 </html>

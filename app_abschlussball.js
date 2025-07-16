@@ -141,12 +141,6 @@ app.post('/buy-ticket', (req, res) => {
     ref = Math.floor(Math.random() * 1000000);
   }
 
-  try {
-    sendBookingConfirmation(email, ref, req.body);
-  } catch (error) {
-    res.json({ message: 'Error bei der Bestellung' });
-  }
-
   db.run(
     `INSERT INTO users (
       vorname, nachname, email, phone_number,
@@ -158,6 +152,11 @@ app.post('/buy-ticket', (req, res) => {
         console.error('Fehler beim Einfügen:', err.message);
         res.redirect('/ticketverkauf?error=Email+ist+bereits+registriert');
       } else {
+        try {
+          sendBookingConfirmation(email, ref, req.body);
+        } catch (error) {
+          res.json({ message: 'Error bei der Bestellung' });
+        }
         res.render('stage2', { ref });
       }
     }

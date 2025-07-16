@@ -75,7 +75,7 @@ const checkID = (number) => {
   });
 };
 
-const sendBookingConfirmation = (email, ref) => {
+const sendBookingConfirmation = (email, ref, body) => {
   const transporter = nodemailer.createTransport({
     service: 'outlook',
     auth: {
@@ -84,7 +84,7 @@ const sendBookingConfirmation = (email, ref) => {
     },
   });
 
-  let template = `
+  let templateUser = `
 Vielen Dank für Ihre Bestellung!
 
 Sobald wir den Zahlungseingang verbuchen konnten, werden die Tickets innerhalb von 2-3 Werktagen an die von Ihnen angegebene E-Mail-Adresse (${email}) versendet.
@@ -96,15 +96,35 @@ Bei Fragen oder Problemen können Sie sich jederzeit an uns wenden.
 Ihre Referenznummer lautet: ${ref}
 `;
 
-  const mailOptions = {
+  const templateAdmin = `
+Neue Bestellung von ${body.vorname} ${body.nachname}!
+
+Anzahl der Tickets: ${body.ticket_count}
+Email: ${body.email}
+Nummer: ${body.phone_number}
+Adresse: ${body.address}
+PLZ: ${body.plz}
+
+Datum der Bestellung: ${new Date().toLocaleString()}
+`;
+
+  const mailOptionsUser = {
     from: 'paul.mondl@tfs-haslach.at',
     to: email,
     subject: `Wichtige Information zur Ticketzustellung`,
-    text: template,
+    text: templateUser,
+  };
+
+  const mailOptionsAdmin = {
+    from: 'paul.mondl@tfs-haslach.at',
+    to: 'paul.mondl@tfs-haslach.at, leon.heitzinger@tfs-haslach.at',
+    subject: 'Neue Ticketbestellung',
+    text: templateAdmin,
   };
 
   try {
-    transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptionsUser);
+    transporter.sendMail(mailOptionsAdmin);
   } catch (err) {
     console.log(err);
     throw new Error('Error');
@@ -122,7 +142,7 @@ app.post('/buy-ticket', (req, res) => {
   }
 
   try {
-    sendBookingConfirmation(email, ref);
+    sendBookingConfirmation(email, ref, req.body);
   } catch (error) {
     res.json({ message: 'Error bei der Bestellung' });
   }

@@ -364,78 +364,58 @@ footer {
   }
 }
 
-#sponsors td[colspan='3'] h1::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+.sponsor-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-#sponsors a {
-  display: block;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-#sponsors img {
+.sponsor-card {
   width: 100%;
-  max-width: 250px;
-  height: 250px;
-  border-radius: 8px;
-  object-fit: contain;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.05);
   padding: 1rem;
+  border-radius: 8px;
   border: 1px solid rgba(255, 215, 0, 0.2);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
 }
 
-#sponsors p {
-  margin-top: 1rem;
-  color: var(--light);
+.sponsor-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.sponsor-card p {
+  margin-top: 0.5rem;
   font-weight: 500;
-  transition: color 0.3s;
+  color: var(--light);
 }
 
-#sponsors a:hover img {
+.sponsor-card a:hover img {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   border-color: var(--gold);
 }
 
-#sponsors a:hover p {
+.sponsor-card a:hover p {
   color: var(--gold);
 }
 
-@media (max-width: 768px) {
-  #sponsors-head {
-    padding: 3rem 1.5rem 1.5rem;
-  }
-
-  #sponsors-head h2 {
-    font-size: 1.8rem;
-  }
-
-  #sponsors {
-    padding: 1rem;
-  }
-
-  #sponsors tr.element {
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-
-  #sponsors td {
-    padding: 0.5rem;
-  }
-
-  #sponsors img {
-    max-width: 180px;
-    padding: 0.5rem;
-  }
+.sponsor-category {
+  grid-column: 1 / -1;
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin: 2rem 0 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 0.5rem;
 }
 
 @media (max-width: 480px) {
@@ -505,6 +485,7 @@ footer {
     flex-direction: column;
     width: 200px;
     padding: 1rem;
+    text-align: center;
     gap: 1rem;
     display: none;
     box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
@@ -521,7 +502,7 @@ footer {
 
 .school-detail {
   display: block;
-  padding: 0 10rem;
+  padding: 0 10%;
 }
 
 .school-detail h3 {

@@ -8,6 +8,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -29,58 +33,35 @@
         </ul>
       </div>
     </nav>
-    
+
     <div id="sponsors-head">
       <h2>Ein herzliches Dankeschön an unsere Sponsoren!</h2>
       <p>
-        Ihre Unterstützung macht unseren Abschlussball 2025 erst möglich. 
-        Durch Ihr Engagement helfen Sie uns, einen unvergesslichen Abend zu gestalten - 
-        voller Eleganz, Musik und Gemeinschaft. Wir schätzen Ihre Partnerschaft sehr!
+        Ihre Unterstützung macht unseren Abschlussball 2025 erst möglich. Durch
+        Ihr Engagement helfen Sie uns, einen unvergesslichen Abend zu gestalten
+        - voller Eleganz, Musik und Gemeinschaft. Wir schätzen Ihre
+        Partnerschaft sehr!
       </p>
     </div>
 
     <section id="sponsors">
-      <table>
-        <% let colCount = 0; %>
-
-        <% data.forEach((element, i) => { %>
-          <% if (element[0].startsWith('-')) { %>
-            <% if (colCount !== 0) { %>
-              </tr>
-              <% colCount = 0; %>
+      <div class="sponsor-section">
+        <% data.forEach((element, i) => { %> <% if (element[0].startsWith('-'))
+        { %>
+        <h2 class="sponsor-category"><%= element[0].substring(2).trim() %></h2>
+        <% } else { %>
+        <div class="sponsor-card">
+          <a href="<%=element[1]%>" target="_blank">
+            <% if (!element[2]) { %>
+            <img src="imgs/logo.jpg" alt="logo" />
+            <% } else { %>
+            <img src="imgs/logos/<%=element[2]%>" alt="logo" />
             <% } %>
-            <tr>
-              <td colspan="3" style="text-align:center;">
-                <h1><%= element[0].substring(2).trim() %></h1>
-              </td>
-            </tr>
-          <% } else { %>
-            <% if (colCount === 0) { %>
-              <tr class="element">
-            <% } %>
-            <td>
-              <a href="<%=element[1]%>">
-                <% if (!element[2]) { %>
-                  <img src="imgs/logo.jpg" alt="logo" height="250px">
-                <% } else { %>
-                  <img src="imgs/logos/<%=element[2]%>" alt="logo" height="250px">
-                <% }%>
-              
-              <p><%= element[0] %></p>
-              </a>
-            </td>
-            <% colCount++; %>
-            <% if (colCount === 3) { %>
-              </tr>
-              <% colCount = 0; %>
-            <% } %>
-          <% } %>
-        <% }); %>
-
-        <% if (colCount !== 0) { %>
-          </tr>
-        <% } %>
-      </table>
+            <p><%= element[0] %></p>
+          </a>
+        </div>
+        <% } %> <% }); %>
+      </div>
     </section>
     <footer>
       <p>&copy; 2025 Abschlussball @ TFS-Haslach</p>

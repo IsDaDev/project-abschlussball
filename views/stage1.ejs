@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tickets kaufen</title>
     <link rel="stylesheet" href="ticket.css" />
     <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <nav class="nav sticky-nav">
       <div class="nav-container">
         <div class="nav-logo">
@@ -26,47 +30,73 @@
         </ul>
       </div>
     </nav>
-    
+
     <div class="container container-1">
-        <h1>Ticketverkauf</h1>
-        <% if (error) { %>
-         <h2 class="error"><%= error %></h2>
-        <% } %>
-        <form action="/buy-ticket" method="post">
-            <table>
-                <tr>
-                    <td><label for="">Vorname</label></td>
-                    <td class="center"><input required type="text" name="vorname" id="vorname"></td>
-                </tr>
-                <tr>
-                    <td><label for="">Nachname</label></td>
-                    <td class="center"><input required type="text" name="nachname" id="nachname"></td>
-                </tr>
-                <tr>
-                    <td><label for="">Email</label></td>
-                    <td class="center"><input required type="email" name="email" id="email"></td>
-                </tr>
-                <tr>
-                    <td><label for="">Telephonnr.</label></td>
-                    <td class="center"><input required type="number" name="phone_number" id="phone_number"></td>
-                </tr>
-                <tr>
-                    <td><label for="">Straße + Hausnr.</label></td>
-                    <td class="center"><input required type="text" name="address" id="address"></td>
-                </tr>
-                <tr>
-                    <td><label for="">PLZ</label></td>
-                    <td class="center"><input required type="number" name="plz" id="plz"></td>
-                </tr>
-                <tr>
-                    <td><label for="">Anzahl der Tickets</label></td>
-                    <td class="center"><input required type="number" name="ticket_count" id="ticket_count"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="center"><button type="submit">Abschicken</button></td>
-                </tr>
-            </table>
-        </form>
+      <h1>Ticketverkauf</h1>
+      <% if (error) { %>
+      <h2 class="error"><%= error %></h2>
+      <% } %>
+      <form action="/buy-ticket" method="post">
+        <table>
+          <tr>
+            <td><label for="">Vorname</label></td>
+            <td class="center">
+              <input required type="text" name="vorname" id="vorname" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">Nachname</label></td>
+            <td class="center">
+              <input required type="text" name="nachname" id="nachname" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">Email</label></td>
+            <td class="center">
+              <input required type="email" name="email" id="email" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">Telephonnr.</label></td>
+            <td class="center">
+              <input
+                required
+                type="number"
+                name="phone_number"
+                id="phone_number"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">Straße + Hausnr.</label></td>
+            <td class="center">
+              <input required type="text" name="address" id="address" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">PLZ</label></td>
+            <td class="center">
+              <input required type="number" name="plz" id="plz" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="">Anzahl der Tickets</label></td>
+            <td class="center">
+              <input
+                required
+                type="number"
+                name="ticket_count"
+                id="ticket_count"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="center">
+              <button type="submit">Abschicken</button>
+            </td>
+          </tr>
+        </table>
+      </form>
     </div>
-</body>
+  </body>
 </html>

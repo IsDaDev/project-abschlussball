@@ -525,3 +525,15 @@ hr {
 textarea {
   resize: none;
 }
+
+.gap p {
+  margin-top: 1rem;
+}
+
+.margin {
+  margin: 100px;
+}
+
+#jsch .container {
+  text-align: center;
+}

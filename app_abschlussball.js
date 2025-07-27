@@ -206,3 +206,7 @@ app.post('/send-contact-form', (req, res) => {
     res.redirect('/kontakt?status=Fehler+beim+senden+der+Nachricht&color=red');
   }
 });
+
+app.get('/jugendschutz', (req, res) => {
+  res.render('jugendschutz');
+});

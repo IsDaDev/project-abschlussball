@@ -42,7 +42,6 @@ app.get('/sponsoren', (req, res) => {
       }
     });
 
-    console.log(dataArr);
     res.render('sponsors', { data: dataArr });
   });
 });
@@ -104,6 +103,7 @@ Email: ${body.email}
 Nummer: ${body.phone_number}
 Adresse: ${body.address}
 PLZ: ${body.plz}
+Ref.Nr: ${ref}
 
 Datum der Bestellung: ${new Date().toLocaleString()}
 `;
@@ -157,7 +157,8 @@ app.post('/buy-ticket', (req, res) => {
         } catch (error) {
           res.json({ message: 'Error bei der Bestellung' });
         }
-        res.render('stage2', { ref });
+        const amount = ticket_count * 19;
+        res.render('stage2', { ref, amount });
       }
     }
   );

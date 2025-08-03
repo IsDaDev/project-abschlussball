@@ -537,3 +537,8 @@ textarea {
 #jsch .container {
   text-align: center;
 }
+
+.logo-icon {
+  height: 50px;
+  width: 300px;
+}

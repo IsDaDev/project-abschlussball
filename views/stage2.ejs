@@ -51,7 +51,13 @@
       <table>
         <tr>
           <td>Betrag</td>
-          <td><strong><%= amount %>€ (19€ pro Karte)</strong></td>
+          <td>
+            <% if (amount != undefined) { %>
+            <strong> <%= amount %>€ (19€ pro Karte)</strong>
+          </td>
+          <% } else { %>
+          <strong>19€ pro Karte</strong>
+          <% } %>
         </tr>
         <tr>
           <td>IBAN</td>

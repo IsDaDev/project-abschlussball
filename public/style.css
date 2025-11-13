@@ -365,8 +365,9 @@ footer {
 }
 
 .sponsor-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   margin-top: 2rem;
   text-align: center;
@@ -410,7 +411,7 @@ footer {
 }
 
 .sponsor-category {
-  grid-column: 1 / -1;
+  flex: 0 0 100%;
   font-size: 1.6rem;
   color: var(--gold);
   margin: 2rem 0 1rem;
@@ -543,4 +544,5 @@ textarea {
   height: 50px;
   width: 300px;
 }
+
 

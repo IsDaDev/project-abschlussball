@@ -369,6 +369,7 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  text-align: center;
 }
 
 .sponsor-card {
@@ -542,3 +543,4 @@ textarea {
   height: 50px;
   width: 300px;
 }
+

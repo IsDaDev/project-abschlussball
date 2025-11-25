@@ -1,73 +1,78 @@
-const express = require("express");
-const fs = require("fs");
-const bodyParser = require("body-parser");
-const sqlite3 = require("sqlite3");
-const nodemailer = require("nodemailer");
-require("dotenv").config();
+const express = require('express');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const sqlite3 = require('sqlite3');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
-const db = new sqlite3.Database("users.db", (err) => {
+const db = new sqlite3.Database('users.db', (err) => {
   if (err) {
-    console.error("error connecting to db");
+    console.error('error connecting to db');
   }
 });
 
-const cookieParser = require("cookie-parser");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded());
 
 app.listen(3001, () => {
-  console.log("up and running");
+  console.log('up and running');
 });
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
-app.get("/sponsoren", (req, res) => {
-  fs.readFile("sponsors.csv", "utf8", (err, data) => {
+app.get('/sponsoren', (req, res) => {
+  fs.readFile('sponsors.csv', 'utf8', (err, data) => {
     const lines = data
       .trim()
-      .split("\n")
-      .filter((line) => line.trim() !== "");
+      .split('\n')
+      .filter((line) => line.trim() !== '');
 
     const dataArr = lines.map((line) => {
-      if (line.startsWith("--")) {
+      if (line.startsWith('--')) {
         return [line];
       } else {
-        return line.split(",");
+        return line.split(',');
       }
     });
 
-    res.render("sponsors", { data: dataArr });
+    res.render('sponsors', { data: dataArr });
   });
 });
 
-app.get("/impressum", (req, res) => {
-  res.render("impressum");
+app.get('/gallery', (req, res) => {
+  const imgs = fs.readdirSync('./public/imgs/after-event');
+  res.render('gallery', { imgs });
 });
 
-app.get("/privacy", (req, res) => {
-  res.render("privacy");
+app.get('/impressum', (req, res) => {
+  res.render('impressum');
 });
 
-app.get("/ticketverkauf", (req, res) => {
+app.get('/privacy', (req, res) => {
+  res.render('privacy');
+});
+
+app.get('/ticketverkauf', (req, res) => {
   let error = req.query.error;
   if (error) {
     console.log(error);
-    res.render("stage1", { error });
+    res.render('stage1', { error });
   } else {
-    res.render("stage1", { error: undefined });
+    res.render('stage1', { error: undefined });
   }
 });
 
 const checkID = (number) => {
-  db.get("SELECT * FROM users WHERE referenz = ?", [number], (err, rows) => {
+  db.get('SELECT * FROM users WHERE referenz = ?', [number], (err, rows) => {
     if (!rows) {
       return 0;
     } else {
@@ -78,7 +83,7 @@ const checkID = (number) => {
 
 const sendBookingConfirmation = (email, ref, body) => {
   const transporter = nodemailer.createTransport({
-    service: "outlook",
+    service: 'outlook',
     auth: {
       user: process.env.acc,
       pass: process.env.pass,
@@ -111,16 +116,16 @@ Datum der Bestellung: ${new Date().toLocaleString()}
 `;
 
   const mailOptionsUser = {
-    from: "paul.mondl@tfs-haslach.at",
+    from: 'paul.mondl@tfs-haslach.at',
     to: email,
     subject: `Wichtige Information zur Ticketzustellung`,
     text: templateUser,
   };
 
   const mailOptionsAdmin = {
-    from: "paul.mondl@tfs-haslach.at",
-    to: "paul.mondl@tfs-haslach.at, leon.heitzinger@tfs-haslach.at",
-    subject: "Neue Ticketbestellung",
+    from: 'paul.mondl@tfs-haslach.at',
+    to: 'paul.mondl@tfs-haslach.at, leon.heitzinger@tfs-haslach.at',
+    subject: 'Neue Ticketbestellung',
     text: templateAdmin,
   };
 
@@ -129,11 +134,11 @@ Datum der Bestellung: ${new Date().toLocaleString()}
     transporter.sendMail(mailOptionsAdmin);
   } catch (err) {
     console.log(err);
-    throw new Error("Error");
+    throw new Error('Error');
   }
 };
 
-app.post("/buy-ticket", (req, res) => {
+app.post('/buy-ticket', (req, res) => {
   let { vorname, nachname, email, phone_number, ticket_count, address, plz } =
     req.body;
 
@@ -151,50 +156,50 @@ app.post("/buy-ticket", (req, res) => {
     [vorname, nachname, email, phone_number, address, plz, ticket_count, ref],
     function (err) {
       if (err) {
-        console.error("Fehler beim Einfügen:", err.message);
-        res.redirect("/ticketverkauf?error=Fehler+beim+Einfügen");
+        console.error('Fehler beim Einfügen:', err.message);
+        res.redirect('/ticketverkauf?error=Fehler+beim+Einfügen');
         return;
       }
 
       try {
         sendBookingConfirmation(email, ref, req.body);
       } catch (error) {
-        console.error("Fehler beim Senden der Bestätigung:", error.message);
-        res.json({ message: "Error bei der Bestellung" });
+        console.error('Fehler beim Senden der Bestätigung:', error.message);
+        res.json({ message: 'Error bei der Bestellung' });
         return;
       }
 
-      res.cookie("ref", ref);
+      res.cookie('ref', ref);
       const amount = ticket_count * 19;
-      res.render("stage2", { ref, amount });
+      res.render('stage2', { ref, amount });
     }
   );
 });
 
-app.get("/konto-informationen", (req, res) => {
+app.get('/konto-informationen', (req, res) => {
   const ref =
     req.cookies.ref ||
-    "Füll das Bestellformular um deinen Zahlungszweck zu generieren";
+    'Füll das Bestellformular um deinen Zahlungszweck zu generieren';
 
-  res.render("stage2", { ref: ref, amount: undefined });
+  res.render('stage2', { ref: ref, amount: undefined });
 });
 
-app.get("/kontakt", (req, res) => {
+app.get('/kontakt', (req, res) => {
   let status = undefined;
   console.log(req.query.status);
   if (req.query.status) {
     status = req.query.status;
   }
-  res.render("kontakt", { status: status, color: req.query.color });
+  res.render('kontakt', { status: status, color: req.query.color });
 });
 
-app.post("/send-contact-form", (req, res) => {
+app.post('/send-contact-form', (req, res) => {
   const { vorname, nachname, email, anliegen, message } = req.body;
 
-  const to = "leon.heitzinger@tfs-haslach.at";
+  const to = 'leon.heitzinger@tfs-haslach.at';
 
   const transporter = nodemailer.createTransport({
-    service: "outlook",
+    service: 'outlook',
     auth: {
       user: process.env.acc,
       pass: process.env.pass,
@@ -207,7 +212,7 @@ app.post("/send-contact-form", (req, res) => {
   `;
 
   const mailOptions = {
-    from: "paul.mondl@tfs-haslach.at",
+    from: 'paul.mondl@tfs-haslach.at',
     to,
     subject: `${anliegen} von ${vorname} ${nachname}`,
     text: template,
@@ -215,13 +220,13 @@ app.post("/send-contact-form", (req, res) => {
 
   try {
     transporter.sendMail(mailOptions);
-    res.redirect("/kontakt?status=Nachricht+gesendet&color=green");
+    res.redirect('/kontakt?status=Nachricht+gesendet&color=green');
   } catch (err) {
     console.log(err);
-    res.redirect("/kontakt?status=Fehler+beim+senden+der+Nachricht&color=red");
+    res.redirect('/kontakt?status=Fehler+beim+senden+der+Nachricht&color=red');
   }
 });
 
-app.get("/jugendschutz", (req, res) => {
-  res.render("jugendschutz");
+app.get('/jugendschutz', (req, res) => {
+  res.render('jugendschutz');
 });

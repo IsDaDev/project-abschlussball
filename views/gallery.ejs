@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abschlussball 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="imgs/logo_small.png" type="image/x-icon" />
+  </head>
+  <body>
+    <nav class="nav sticky-nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="/"
+            ><img src="imgs/logo_big.png" alt="Logo" class="logo-icon"
+          /></a>
+        </div>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon"
+          ><i class="fas fa-bars"></i
+        ></label>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/sponsoren">Sponsoren</a></li>
+          <li><a href="#details">Details</a></li>
+          <li><a href="/ticketverkauf">Tickets</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/jugendschutz">Jugendschutz</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="gallery-section">
+      <h2 class="section-title">Event Gallery</h2>
+      <div class="gallery-container"></div>
+      <div class="pagination"></div>
+    </div>
+
+    <script>
+                  // Get images from template variable
+                  const images = <%- JSON.stringify(imgs) %>;
+
+                  // Pagination settings
+                  const imagesPerPage = 15;
+                  let currentPage = 1;
+
+                  const totalImages = images.length;
+                  const totalPages = Math.ceil(totalImages / imagesPerPage);
+
+                  const galleryContainer = document.querySelector('.gallery-container');
+
+                  const paginationContainer = document.querySelector('.pagination');
+
+                  const updateGallery = () => {
+                    console.log(currentPage);
+
+                    galleryContainer.innerHTML = '';
+                    const idx = (currentPage - 1) * imagesPerPage;
+                    const endIdx = Math.min(idx + imagesPerPage, totalImages);
+
+                    for (let i = idx; i < endIdx; i++) {
+                      const imgDiv = document.createElement('div');
+                      imgDiv.classList.add('gallery-item');
+
+                      const imgElement = document.createElement('img');
+                      imgElement.src = `/imgs/after-event/${images[i]}`;
+                      imgElement.alt = `Event Image ${i + 1}`;
+
+                      const text = document.createElement('button');
+            text.classList.add('image-text');
+            text.textContent = `Download...`;
+
+            text.addEventListener('click', async (e) => {
+              e.preventDefault();
+
+              const link = "https://tfsball-haslach-2025-images.s3.eu-north-1.amazonaws.com/" + images[i].split('.')[0] + ".jpg";
+
+              try {
+                // Try to force download
+                const a = document.createElement('a');
+                a.href = link;
+                a.download = images[i];
+                a.target = '_blank';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+              } catch (error) {
+                // Fallback: open in new tab
+                window.open(link, '_blank');
+              }
+            });
+
+
+
+                      imgDiv.appendChild(imgElement);
+      imgDiv.appendChild(text);
+                      galleryContainer.appendChild(imgDiv);
+                    }
+
+                    updatePagination();
+                  };
+
+                  const updatePagination = () => {
+                    paginationContainer.innerHTML = `
+                            <button id="prev-btn" ${currentPage === 1 ? 'disabled' : ''}>
+                                Previous
+                            </button>
+                            <span id='page-info'> Page ${currentPage} of ${totalPages} </span>
+                            <button id="next-btn" ${
+                              currentPage === totalPages ? 'disabled' : ''
+                            }>
+                                Next
+                            </button>
+                            `;
+
+                    document.getElementById('prev-btn').addEventListener('click', () => {
+                      if (currentPage > 1) {
+                        console.log('prev clicked');
+                        currentPage--;
+                        updateGallery();
+                      }
+                    });
+
+                    document.getElementById('next-btn').addEventListener('click', () => {
+                      if (currentPage < totalPages) {
+                        console.log('next clicked');
+                        currentPage++;
+                        updateGallery();
+                      }
+                    });
+                  };
+
+                  updateGallery();
+                  updatePagination();
+    </script>
+  </body>
+</html>

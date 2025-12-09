@@ -50,7 +50,7 @@ app.get('/sponsoren', (req, res) => {
 
 app.get('/gallery', (req, res) => {
   const imgs = fs.readdirSync('./public/imgs/after-event');
-  res.render('gallery', { imgs });
+  res.redirect('https://drive.google.com/drive/folders/1ikckOJ7c7d2CifutvRO-t2YzFUXkB2MZ?usp=sharing');
 });
 
 app.get('/impressum', (req, res) => {

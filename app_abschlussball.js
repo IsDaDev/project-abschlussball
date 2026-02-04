@@ -48,11 +48,6 @@ app.get('/sponsoren', (req, res) => {
   });
 });
 
-app.get('/gallery', (req, res) => {
-  const imgs = fs.readdirSync('./public/imgs/after-event');
-  res.redirect('https://drive.google.com/drive/folders/1ikckOJ7c7d2CifutvRO-t2YzFUXkB2MZ?usp=sharing');
-});
-
 app.get('/impressum', (req, res) => {
   res.render('impressum');
 });
@@ -172,7 +167,7 @@ app.post('/buy-ticket', (req, res) => {
       res.cookie('ref', ref);
       const amount = ticket_count * 19;
       res.render('stage2', { ref, amount });
-    }
+    },
   );
 });
 
